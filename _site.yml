@@ -1,0 +1,29 @@
+name: Aaron Pilot Data
+output_dir: '.'
+navbar:
+  title: Aaron Pilot Data
+  left:
+  - text: SAJE
+    href: saje.html
+  - text: GIAD
+    href: giad.html
+  - text: LELI
+    href: leli.html
+  right:
+  - text: Visual Analysis
+    href: visual_analysis.html
+  - text: MLM
+    href: mlm.html
+  - text: Tau-U
+    href: tau_u.html
+  - icon: fa-github
+    href: https://github.com/Jim-Wright90/aaron_pilot_data.git
+output:
+  html_document:
+    theme: journal
+    css: website-custom.css
+    includes:
+      after_body: footer.html
+    lib_dir: site_libs
+    self_contained: no
+

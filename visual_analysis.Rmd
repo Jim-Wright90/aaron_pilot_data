@@ -59,8 +59,8 @@ saje_plot <- ggplot() +
   geom_point(data = saje, aes(x = session, y = bl), size = 2) +
   geom_line(data = saje, aes(x = session, y = tx)) +
   geom_point(data = saje, aes(x = session, y = tx), size = 2) +
-  scale_x_continuous(limits = c(0, 6),
-                     breaks = c(1, 2, 3, 4, 5, 6)) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
   scale_y_continuous(limits = c(0, 100),
                      breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
                      labels = function(x) paste0(x, "%")) +
@@ -79,8 +79,8 @@ giad_plot <- ggplot() +
   geom_point(data = giad, aes(x = session, y = bl), size = 2) +
   geom_line(data = giad, aes(x = session, y = tx)) +
   geom_point(data = giad, aes(x = session, y = tx), size = 2) +
-  scale_x_continuous(limits = c(0, 7),
-                     breaks = c(1, 2, 3, 4, 5, 6, 7)) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
   scale_y_continuous(limits = c(0, 100),
                      breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
                      labels = function(x) paste(x, "%")) +
@@ -117,3 +117,8 @@ all_plots
 ```{r, include=TRUE, fig.height=9, fig.width=10}
 all_plots
 ```
+
+
+## Visual Analysis with PowerPoint Lines Added
+
+![](tools/visual_analysis.png){width=100%}

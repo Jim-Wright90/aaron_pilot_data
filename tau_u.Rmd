@@ -1,0 +1,18 @@
+---
+title: "Tau-U"
+output:
+  html_document:
+    theme: united
+    highlight: tango
+---
+
+## Results 
+
+| **Value** | **Score** |
+| :-------- | :-------: |
+| Tau-U     | .810      |
+| *z*-Score | 2.94      |
+| *p*-value | .0032     | 
+
+
+**_Interpretation:_** A _Tau-U_ value of .810 corresponds to a medium to high treatment effect. 
