@@ -8,3 +8,132 @@ output:
     highlight: tango
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r setup 1, include=FALSE}
+library(tidyverse)
+library(rio)
+library(here)
+library(colorblindr)
+library(gghighlight)
+library(forcats)
+library(ggrepel)
+library(gt)
+library(knitr)
+library(kableExtra)
+library(reactable)
+library(plotly)
+library(SCVA)
+library(patchwork)
+
+theme_set(theme_minimal(15) +
+            theme(legend.position = "bottom",
+                  panel.grid.major.x = element_line(color = "gray60"),
+                  panel.grid.minor.x = element_blank(),
+                  panel.grid.major.y = element_blank())
+          )
+
+brief <- import(here("data", "GIAD_brief.xlsx"),
+               setclass = "tbl_df") 
+
+```
+
+```{r, include=FALSE}
+make_color_pal <- function(colors, bias = 1) {
+  get_color <- colorRamp(colors, bias = bias)
+  function(x) rgb(get_color(x), maxColorValue = 255)
+}
+
+good_color <- make_color_pal(c("#ffffff", "#f2fbd2", "#c9ecb4", "#93d3ab", "#35b0ab"), bias = 2)
+seq(0.1, 0.9, length.out = 12)
+good_color(seq(0.1, 0.9, length.out = 12))
+seq(0.1, 0.9, length.out = 12) %>% 
+  good_color() %>% 
+  scales::show_col()
+```
+
+## BRIEF-A Results {.tabset .tabset-fade .tabset-pills}
+
+### Self-Report
+
+```{r, include=FALSE}
+head(brief)
+
+brief_tbl <- function(df) {
+  df %>% 
+  reactable(
+    columns = list(
+      `Scale/Index` = colDef(align = "center"),
+      `T-Score Pre` = colDef(name = "T-Score Pre",
+                           align = "center"),
+      `Percentile Rank Pre` = colDef(name = "Percentile Rank Pre",
+                         align = "center"),
+      `T-Score Post` = colDef(name = "T-Score Post",
+                           align = "center"),
+      `Percentile Rank Post` = colDef(name = "Percentile Rank Post",
+                                align = "center")),
+    pagination = FALSE,
+    striped = TRUE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = TRUE,
+    #searchable = TRUE,
+    height = 600,
+    width = 500)
+}
+
+brief_tbl(brief)
+brief_self_tbl <- brief %>% 
+  reactable(
+    columns = list(
+      `Scale/Index` = colDef(align = "center"),
+      `T-Score Pre` = colDef(name = "T-Score Pre",
+                           align = "center",
+                           style = function(value) {
+                           value
+                           normalized <- (value - min(brief$`T-Score Pre`)) / (max(brief$`T-Score Pre`) - min(brief$`T-Score Pre`))
+                           color <- good_color(normalized)
+                           list(background = color)
+                         }),
+      `Percentile Rank Pre` = colDef(name = "Percentile Rank Pre",
+                         align = "center",
+                         style = function(value) {
+                           value
+                           normalized <- (value - min(brief$`Percentile Rank Pre`)) / (max(brief$`Percentile Rank Pre`) - min(brief$`Percentile Rank Pre`))
+                           color <- good_color(normalized)
+                           list(background = color)
+                         }),
+      `T-Score Post` = colDef(name = "T-Score Post",
+                           align = "center",
+                           style = function(value) {
+                           value
+                           normalized <- (value - min(brief$`T-Score Post`)) / (max(brief$`T-Score Post`) - min(brief$`T-Score Post`))
+                           color <- good_color(normalized)
+                           list(background = color)
+                         }),
+      `Percentile Rank Post` = colDef(name = "Percentile Rank Post",
+                         align = "center",
+                         style = function(value) {
+                           value
+                           normalized <- (value - min(brief$`Percentile Rank Post`)) / (max(brief$`Percentile Rank Post`) - min(brief$`Percentile Rank Post`))
+                           color <- good_color(normalized)
+                           list(background = color)
+                         })),
+    pagination = FALSE,
+    striped = FALSE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = FALSE,
+    #searchable = TRUE,
+    height = 600,
+    width = 500)
+```
+
+
+```{r, include=TRUE, fig.height=8, fig.width=10}
+brief_self_tbl
+```
