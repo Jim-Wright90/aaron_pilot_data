@@ -15,4 +15,4 @@ output:
 | *p*-value | .0032     | 
 
 
-**_Interpretation:_** A _Tau-U_ value of .810 corresponds to a medium to high treatment effect. 
+**_Interpretation:_** A _Tau-U_ value of .810 corresponds to a medium to high treatment effect. All three participants required a baseline trend correction.  
