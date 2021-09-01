@@ -38,6 +38,12 @@ theme_set(theme_minimal(15) +
 brief <- import(here("data", "GIAD_brief.xlsx"),
                setclass = "tbl_df") 
 
+care <- import(here("data", "GIAD_CARE_NG.xlsx"),
+               setclass = "tbl_df") 
+
+waic <- import(here("data", "GIAD_WAIC.xlsx"),
+               setclass = "tbl_df") 
+
 ```
 
 ```{r, include=FALSE}
@@ -121,7 +127,9 @@ brief_self_tbl <- brief %>%
                            normalized <- (value - min(brief$`Percentile Rank Post`)) / (max(brief$`Percentile Rank Post`) - min(brief$`Percentile Rank Post`))
                            color <- good_color(normalized)
                            list(background = color)
-                         })),
+                         }),
+            `RCI` = colDef(name = "RCI Value",
+                     align = "center")),
     pagination = FALSE,
     striped = FALSE,
     outlined = TRUE,
@@ -129,11 +137,60 @@ brief_self_tbl <- brief %>%
     highlight = TRUE,
     bordered = FALSE,
     #searchable = TRUE,
-    height = 600,
-    width = 500)
+    height = 550,
+    width = 800)
 ```
 
 
 ```{r, include=TRUE, fig.height=8, fig.width=10}
 brief_self_tbl
+```
+
+_RCI values with an absolute value exceeding 1.96 are considered clinically significant._
+
+
+## CARE_NG
+
+```{r, include=FALSE}
+head(care)
+
+care_tbl <- care %>% 
+  reactable(
+    defaultColDef = colDef(align = "center"),
+    pagination = FALSE,
+    striped = FALSE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = FALSE,
+    searchable = TRUE,
+    height = 550,
+    width = 800)
+```
+
+```{r, include=TRUE}
+care_tbl
+```
+
+## WAIC 
+
+```{r, include=FALSE}
+head(waic)
+
+waic_tbl <- waic %>% 
+  reactable(
+    defaultColDef = colDef(align = "center"),
+    pagination = FALSE,
+    striped = FALSE,
+    outlined = TRUE,
+    compact = TRUE,
+    highlight = TRUE,
+    bordered = FALSE,
+    searchable = TRUE,
+    height = 550,
+    width = 800)
+```
+
+```{r, include=TRUE}
+waic_tbl
 ```
