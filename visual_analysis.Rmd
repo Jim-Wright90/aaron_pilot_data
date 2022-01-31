@@ -48,17 +48,17 @@ leli <- import(here("data", "LELI_status_goal.xlsx"),
 ```
 
 
-## Visual Analysis with Patchwork Code
+## Visual Analysis with Patchwork Code - MBL 
 
 
 ```{r, include=FALSE}
 head(saje)
 
 saje_plot <- ggplot() +
-  geom_line(data = saje, aes(x = session, y = bl)) +
-  geom_point(data = saje, aes(x = session, y = bl), size = 2) +
-  geom_line(data = saje, aes(x = session, y = tx)) +
-  geom_point(data = saje, aes(x = session, y = tx), size = 2) +
+  geom_line(data = saje, aes(x = session, y = bl_acc)) +
+  geom_point(data = saje, aes(x = session, y = bl_acc), size = 2) +
+  geom_line(data = saje, aes(x = session, y = tx_acc)) +
+  geom_point(data = saje, aes(x = session, y = tx_acc), size = 2) +
   scale_x_continuous(limits = c(0, 8),
                      breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
   scale_y_continuous(limits = c(0, 100),
@@ -75,10 +75,10 @@ saje_plot <- ggplot() +
 saje_plot
 
 giad_plot <- ggplot() +
-  geom_line(data = giad, aes(x = session, y = bl)) +
-  geom_point(data = giad, aes(x = session, y = bl), size = 2) +
-  geom_line(data = giad, aes(x = session, y = tx)) +
-  geom_point(data = giad, aes(x = session, y = tx), size = 2) +
+  geom_line(data = giad, aes(x = session, y = bl_acc)) +
+  geom_point(data = giad, aes(x = session, y = bl_acc), size = 2) +
+  geom_line(data = giad, aes(x = session, y = tx_acc)) +
+  geom_point(data = giad, aes(x = session, y = tx_acc), size = 2) +
   scale_x_continuous(limits = c(0, 8),
                      breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
   scale_y_continuous(limits = c(0, 100),
@@ -95,10 +95,10 @@ giad_plot <- ggplot() +
 giad_plot
 
 leli_plot <- ggplot() +
-  geom_line(data = leli, aes(x = session, y = bl)) +
-  geom_point(data = leli, aes(x = session, y = bl), size = 2) +
-  geom_line(data = leli, aes(x = session, y = tx)) +
-  geom_point(data = leli, aes(x = session, y = tx), size = 2) +
+  geom_line(data = leli, aes(x = session, y = bl_acc)) +
+  geom_point(data = leli, aes(x = session, y = bl_acc), size = 2) +
+  geom_line(data = leli, aes(x = session, y = tx_acc)) +
+  geom_point(data = leli, aes(x = session, y = tx_acc), size = 2) +
   scale_x_continuous(limits = c(0, 8),
                      breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
   scale_y_continuous(limits = c(0, 100),
@@ -119,6 +119,134 @@ all_plots
 ```
 
 
-## Visual Analysis with PowerPoint Lines Added
+## Visual Analysis with PowerPoint Lines Added - MBL
 
 ![](tools/visual_analysis.png){width=100%}
+
+
+## AB Visual Analysis 
+
+### SAJE Endurance
+
+```{r, include=FALSE}
+saje_end <- ggplot() +
+  geom_line(data = saje, aes(x = session, y = bl_end)) +
+  geom_point(data = saje, aes(x = session, y = bl_end), size = 2) +
+  geom_line(data = saje, aes(x = session, y = tx_end)) +
+  geom_point(data = saje, aes(x = session, y = tx_end), size = 2) +
+  scale_x_continuous(limits = c(0, 6),
+                     breaks = c(1, 2, 3, 4, 5, 6)) +
+  scale_y_continuous(limits = c(0, 125),
+                     breaks = c(0, 25, 50, 75, 100, 125)) +
+  theme_classic() +
+  labs(x = "Session",
+       y = "Treatment Endurance") 
+```
+
+![](tools/saje_end.png){width=100%}
+
+
+### SAJE Accuracy 
+
+```{r, include=FALSE}
+saje_acc <- ggplot() +
+  geom_line(data = saje, aes(x = session, y = bl_acc)) +
+  geom_point(data = saje, aes(x = session, y = bl_acc), size = 2) +
+  geom_line(data = saje, aes(x = session, y = tx_acc)) +
+  geom_point(data = saje, aes(x = session, y = tx_acc), size = 2) +
+  scale_x_continuous(limits = c(0, 6),
+                     breaks = c(1, 2, 3, 4, 5, 6)) +
+  scale_y_continuous(limits = c(0, 100),
+                     breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+                     labels = function(x) paste0(x, "%")) +
+  theme_classic() +
+  labs(x = "Session",
+       y = "Accuracy") 
+```
+
+
+![](tools/saje_acc.png){width=100%}
+
+
+### LELI Endurance
+
+```{r, include=FALSE}
+leli_end <- ggplot() +
+  geom_line(data = leli, aes(x = session, y = bl_end)) +
+  geom_point(data = leli, aes(x = session, y = bl_end), size = 2) +
+  geom_line(data = leli, aes(x = session, y = tx_end)) +
+  geom_point(data = leli, aes(x = session, y = tx_end), size = 2) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  scale_y_continuous(limits = c(0, 140),
+                     breaks = c(0, 20, 40, 60, 80, 100, 120, 140)) +
+  theme_classic() +
+  labs(x = "Session",
+       y = "Treatment Endurance") 
+```
+
+![](tools/leli_end.png){width=100%}
+
+### LELI Accuracy 
+
+```{r, include=FALSE}
+leli_acc <- ggplot() +
+  geom_line(data = leli, aes(x = session, y = bl_acc)) +
+  geom_point(data = leli, aes(x = session, y = bl_acc), size = 2) +
+  geom_line(data = leli, aes(x = session, y = tx_acc)) +
+  geom_point(data = leli, aes(x = session, y = tx_acc), size = 2) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  scale_y_continuous(limits = c(0, 100),
+                     breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+                     labels = function(x) paste0(x, "%")) +
+  theme_classic() +
+  labs(x = "Session",
+       y = "Accuracy") 
+```
+
+
+![](tools/leli_acc.png){width=100%}
+
+
+
+### GIAD Endurance
+
+```{r, include=FALSE}
+giad_end <- ggplot() +
+  geom_line(data = giad, aes(x = session, y = bl_end)) +
+  geom_point(data = giad, aes(x = session, y = bl_end), size = 2) +
+  geom_line(data = giad, aes(x = session, y = tx_end)) +
+  geom_point(data = giad, aes(x = session, y = tx_end), size = 2) +
+  scale_x_continuous(limits = c(0, 7),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7)) +
+  scale_y_continuous(limits = c(0, 300),
+                     breaks = c(0, 50, 100, 150, 200, 250, 300)) +
+  theme_classic() +
+  labs(x = "Session",
+       y = "Treatment Endurance") 
+```
+
+
+![](tools/giad_end.png){width=100%}
+
+### GIAD Accuracy 
+
+```{r, include=FALSE}
+giad_acc <- ggplot() +
+  geom_line(data = giad, aes(x = session, y = bl_acc)) +
+  geom_point(data = giad, aes(x = session, y = bl_acc), size = 2) +
+  geom_line(data = giad, aes(x = session, y = tx_acc)) +
+  geom_point(data = giad, aes(x = session, y = tx_acc), size = 2) +
+  scale_x_continuous(limits = c(0, 7),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7)) +
+  scale_y_continuous(limits = c(0, 100),
+                     breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100),
+                     labels = function(x) paste0(x, "%")) +
+  theme_classic() +
+  labs(x = "Session",
+       y = "Accuracy") 
+```
+
+
+![](tools/giad_acc.png){width=100%}
