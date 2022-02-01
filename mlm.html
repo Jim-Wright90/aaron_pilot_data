@@ -720,6 +720,555 @@ div.tocify {
 <p>Interpretation: The effect size isn’t particularly large, but the <em>p</em>-value is significant, which is helpful.The <em>p</em>-value for the change in slope is also significant.</p>
 </div>
 </div>
+<div id="saje" class="section level2">
+<h2>SAJE</h2>
+<div id="null-unconditional-model-1" class="section level3">
+<h3>Null (unconditional) model</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>d.Null_saje <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span>,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>saje,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Null_saje)</span></code></pre></div>
+<pre><code>##   (Intercept)
+## 1    77.16667</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Null_saje)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Null_saje)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: saje 
+##        AIC      BIC    logLik
+##   59.26448 58.09279 -26.63224
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:     45.2989 41.60969
+## 
+## Fixed effects:  DV ~ 1 
+##                Value Std.Error DF  t-value p-value
+## (Intercept) 77.16667  48.37924  5 1.595037  0.1716
+## 
+## Standardized Within-Group Residuals:
+##         Min          Q1         Med          Q3         Max 
+## -1.01338564 -0.86918847 -0.07610406  0.89722681  1.07747327 
+## 
+## Number of Observations: 6
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-level-with-an-autocorrelation-component-1" class="section level3">
+<h3>Model with random intercept and change in level (with an autocorrelation component)</h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>d.Level_saje <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Phase,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>saje,</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Level_saje)</span></code></pre></div>
+<pre><code>##   (Intercept)    Phase
+## 1    48.84638 64.99212</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Level_saje)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Level_saje)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: saje 
+##        AIC      BIC    logLik
+##   38.81218 35.74365 -14.40609
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    20.01381 18.38386
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##       Phi 
+## 0.8831458 
+## Fixed effects:  DV ~ 1 + Phase 
+##                Value Std.Error DF  t-value p-value
+## (Intercept) 48.84638 26.037559  4 1.875997  0.1339
+## Phase       64.99212  8.823632  4 7.365688  0.0018
+##  Correlation: 
+##       (Intr)
+## Phase -0.169
+## 
+## Standardized Within-Group Residuals:
+##        Min         Q1        Med         Q3        Max 
+## -0.7531812 -0.5216787 -0.3724124  0.1038700  0.4439493 
+## 
+## Number of Observations: 6
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-slope-with-an-autocorrelation-component-1" class="section level3">
+<h3>Model with random intercept and change in slope (with an autocorrelation component)</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>d.Time_saje <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Time_CTR,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>saje,</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename variables and use only complete cases</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Time_saje)</span></code></pre></div>
+<pre><code>##   (Intercept) Time_CTR
+## 1    87.41363 17.53902</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Time_saje)</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Time_saje)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: saje 
+##        AIC      BIC    logLik
+##   49.61166 46.54313 -19.80583
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    28.65683 26.32298
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##       Phi 
+## 0.5043509 
+## Fixed effects:  DV ~ 1 + Time_CTR 
+##                Value Std.Error DF  t-value p-value
+## (Intercept) 87.41363  33.10484  4 2.640509  0.0575
+## Time_CTR    17.53902   7.20741  4 2.433472  0.0717
+##  Correlation: 
+##          (Intr)
+## Time_CTR 0.109 
+## 
+## Standardized Within-Group Residuals:
+##        Min         Q1        Med         Q3        Max 
+## -1.1349249 -0.4985988  0.1654783  0.4591566  0.6301099 
+## 
+## Number of Observations: 6
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-levelslope-in-tx-with-autocorrelation-1" class="section level3">
+<h3>Model with random intercept and change in level/slope in Tx (with autocorrelation)</h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>d.Model_saje <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Phase<span class="sc">+</span>Time_PhaseCTR,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>saje,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename variables and use only complete cases</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Model_saje)</span></code></pre></div>
+<pre><code>##   (Intercept)    Phase Time_PhaseCTR
+## 1    38.54159 76.80274       9.14747</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Model_saje)</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Model_saje)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: saje 
+##        AIC      BIC    logLik
+##   31.34977 25.94145 -9.674887
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    4.223661  3.87968
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##        Phi 
+## -0.8263351 
+## Fixed effects:  DV ~ 1 + Phase + Time_PhaseCTR 
+##                  Value Std.Error DF  t-value p-value
+## (Intercept)   38.54159  4.299702  3  8.96378  0.0029
+## Phase         76.80274  1.181434  3 65.00810  0.0000
+## Time_PhaseCTR  9.14747  1.368994  3  6.68189  0.0068
+##  Correlation: 
+##               (Intr) Phase 
+## Phase         -0.138       
+## Time_PhaseCTR  0.032 -0.024
+## 
+## Standardized Within-Group Residuals:
+##         Min          Q1         Med          Q3         Max 
+## -0.91285489 -0.62326334 -0.09516797  0.60735881  1.40692384 
+## 
+## Number of Observations: 6
+## Number of Groups: 1</code></pre>
+</div>
+<div id="results-1" class="section level3">
+<h3>Results</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Value</strong></th>
+<th align="center"><strong>Score</strong></th>
+<th align="center"><strong><em>p</em>-Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Autocorrelation</td>
+<td align="center">-0.826</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Level</td>
+<td align="center">76.802</td>
+<td align="center">.000</td>
+</tr>
+<tr class="odd">
+<td align="left">Slope</td>
+<td align="center">9.147</td>
+<td align="center">.0068</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="leli" class="section level2">
+<h2>LELI</h2>
+<div id="null-unconditional-model-2" class="section level3">
+<h3>Null (unconditional) model</h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>d.Null_leli <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span>,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>leli,</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Null_leli)</span></code></pre></div>
+<pre><code>##   (Intercept)
+## 1      64.375</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Null_leli)</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Null_leli)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: leli 
+##        AIC      BIC    logLik
+##   78.02054 77.85827 -36.01027
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    33.71566 35.76086
+## 
+## Fixed effects:  DV ~ 1 
+##              Value Std.Error DF t-value p-value
+## (Intercept) 64.375  36.00835  7 1.78778   0.117
+## 
+## Standardized Within-Group Residuals:
+##        Min         Q1        Med         Q3        Max 
+## -1.0451370 -0.7515199 -0.3740122  0.7655017  1.6952891 
+## 
+## Number of Observations: 8
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-level-with-an-autocorrelation-component-2" class="section level3">
+<h3>Model with random intercept and change in level (with an autocorrelation component)</h3>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>d.Level_leli <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Phase,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>leli,</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Level_leli)</span></code></pre></div>
+<pre><code>##   (Intercept)    Phase
+## 1    40.22831 64.41959</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Level_leli)</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Level_leli)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: leli 
+##        AIC     BIC   logLik
+##   61.31881 60.2776 -25.6594
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    13.08313 13.87676
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##         Phi 
+## -0.00723058 
+## Fixed effects:  DV ~ 1 + Phase 
+##                Value Std.Error DF  t-value p-value
+## (Intercept) 40.22831  14.46504  6 2.781071  0.0320
+## Phase       64.41959  10.09062  6 6.384104  0.0007
+##  Correlation: 
+##       (Intr)
+## Phase -0.261
+## 
+## Standardized Within-Group Residuals:
+##        Min         Q1        Med         Q3        Max 
+## -1.1276337 -0.6289877 -0.2117285  0.6681452  1.4666320 
+## 
+## Number of Observations: 8
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-slope-with-an-autocorrelation-component-2" class="section level3">
+<h3>Model with random intercept and change in slope (with an autocorrelation component)</h3>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>d.Time_leli <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Time_CTR,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>leli,</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename variables and use only complete cases</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Time_leli)</span></code></pre></div>
+<pre><code>##   (Intercept) Time_CTR
+## 1      80.557 10.67289</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Time_leli)</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Time_leli)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: leli 
+##        AIC      BIC    logLik
+##   71.35846 70.31725 -30.67923
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    25.86805 27.43721
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##       Phi 
+## 0.2613086 
+## Fixed effects:  DV ~ 1 + Time_CTR 
+##                Value Std.Error DF  t-value p-value
+## (Intercept) 80.55700 29.501113  6 2.730643  0.0342
+## Time_CTR    10.67289  4.878049  6 2.187943  0.0713
+##  Correlation: 
+##          (Intr)
+## Time_CTR 0.248 
+## 
+## Standardized Within-Group Residuals:
+##         Min          Q1         Med          Q3         Max 
+## -1.17399724 -0.46013290 -0.07531162  0.30576171  1.61980748 
+## 
+## Number of Observations: 8
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-levelslope-in-tx-with-autocorrelation-2" class="section level3">
+<h3>Model with random intercept and change in level/slope in Tx (with autocorrelation)</h3>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>d.Model_leli <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Phase<span class="sc">+</span>Time_PhaseCTR,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>leli,</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename variables and use only complete cases</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Model_leli)</span></code></pre></div>
+<pre><code>##   (Intercept)    Phase Time_PhaseCTR
+## 1    40.48678 63.56558     -13.63009</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Model_leli)</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Model_leli)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: leli 
+##        AIC      BIC    logLik
+##   55.03482 52.69145 -21.51741
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    11.47764 12.17387
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##        Phi 
+## -0.2432149 
+## Fixed effects:  DV ~ 1 + Phase + Time_PhaseCTR 
+##                   Value Std.Error DF   t-value p-value
+## (Intercept)    40.48678 12.298989  5  3.291878  0.0217
+## Phase          63.56558  7.479762  5  8.498343  0.0004
+## Time_PhaseCTR -13.63009  8.246719  5 -1.652790  0.1593
+##  Correlation: 
+##               (Intr) Phase 
+## Phase         -0.225       
+## Time_PhaseCTR  0.022 -0.023
+## 
+## Standardized Within-Group Residuals:
+##        Min         Q1        Med         Q3        Max 
+## -1.2364477 -0.7382020  0.2394792  0.6595564  1.1100188 
+## 
+## Number of Observations: 8
+## Number of Groups: 1</code></pre>
+</div>
+<div id="results-2" class="section level3">
+<h3>Results</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Value</strong></th>
+<th align="center"><strong>Score</strong></th>
+<th align="center"><strong><em>p</em>-Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Autocorrelation</td>
+<td align="center">-0.243</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Level</td>
+<td align="center">63.566</td>
+<td align="center">.0004</td>
+</tr>
+<tr class="odd">
+<td align="left">Slope</td>
+<td align="center">-13.630</td>
+<td align="center">.1593</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="giad" class="section level2">
+<h2>GIAD</h2>
+<div id="null-unconditional-model-3" class="section level3">
+<h3>Null (unconditional) model</h3>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>d.Null_giad <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span>,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>giad,</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Null_giad)</span></code></pre></div>
+<pre><code>##   (Intercept)
+## 1    163.4286</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Null_giad)</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Null_giad)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: giad 
+##        AIC      BIC    logLik
+##   76.32274 75.69802 -35.16137
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    72.74827 72.17769
+## 
+## Fixed effects:  DV ~ 1 
+##                Value Std.Error DF  t-value p-value
+## (Intercept) 163.4286  77.69519  6 2.103458  0.0801
+## 
+## Standardized Within-Group Residuals:
+##         Min          Q1         Med          Q3         Max 
+## -1.28056981 -0.76101869 -0.08906591  0.74221588  1.40724132 
+## 
+## Number of Observations: 7
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-level-with-an-autocorrelation-component-3" class="section level3">
+<h3>Model with random intercept and change in level (with an autocorrelation component)</h3>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>d.Level_giad <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Phase,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>giad,</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Level_giad)</span></code></pre></div>
+<pre><code>##   (Intercept)    Phase
+## 1    136.5865 114.3772</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Level_giad)</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Level_giad)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: giad 
+##        AIC      BIC    logLik
+##   59.62525 57.67244 -24.81262
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    58.18389 57.72754
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##       Phi 
+## 0.8183866 
+## Fixed effects:  DV ~ 1 + Phase 
+##                Value Std.Error DF  t-value p-value
+## (Intercept) 136.5865  75.65526  5 1.805381  0.1308
+## Phase       114.3772  34.03763  5 3.360316  0.0201
+##  Correlation: 
+##       (Intr)
+## Phase -0.211
+## 
+## Standardized Within-Group Residuals:
+##         Min          Q1         Med          Q3         Max 
+## -1.13613970 -0.74098335 -0.43244078  0.00389515  0.35361730 
+## 
+## Number of Observations: 7
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-slope-with-an-autocorrelation-component-3" class="section level3">
+<h3>Model with random intercept and change in slope (with an autocorrelation component)</h3>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>d.Time_giad <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Time_CTR,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>giad,</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename variables and use only complete cases</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Time_giad)</span></code></pre></div>
+<pre><code>##   (Intercept) Time_CTR
+## 1    226.3155 18.00746</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Time_giad)</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Time_giad)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: giad 
+##        AIC      BIC    logLik
+##   66.72318 64.77037 -28.36159
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:    321.5464 319.0244
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##       Phi 
+## 0.9831512 
+## Fixed effects:  DV ~ 1 + Time_CTR 
+##                 Value Std.Error DF   t-value p-value
+## (Intercept) 226.31553  448.0850  5 0.5050727  0.6350
+## Time_CTR     18.00746   23.4107  5 0.7691983  0.4765
+##  Correlation: 
+##          (Intr)
+## Time_CTR 0.052 
+## 
+## Standardized Within-Group Residuals:
+##          Min           Q1          Med           Q3          Max 
+## -0.373954519 -0.256408649 -0.057434433 -0.024521589  0.008508131 
+## 
+## Number of Observations: 7
+## Number of Groups: 1</code></pre>
+</div>
+<div id="model-with-random-intercept-and-change-in-levelslope-in-tx-with-autocorrelation-3" class="section level3">
+<h3>Model with random intercept and change in level/slope in Tx (with autocorrelation)</h3>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>d.Model_giad <span class="ot">&lt;-</span> <span class="fu">lme</span>(DV<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>Phase<span class="sc">+</span>Time_PhaseCTR,<span class="at">random=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case,<span class="at">data=</span>giad,</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="at">correlation=</span><span class="fu">corAR1</span>(<span class="at">form=</span><span class="sc">~</span><span class="dv">1</span><span class="sc">|</span>Case),<span class="at">control=</span><span class="fu">list</span>(<span class="at">opt=</span><span class="st">&quot;optim&quot;</span>),<span class="at">na.action=</span><span class="st">&quot;na.omit&quot;</span>)</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename variables and use only complete cases</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(d.Model_giad)</span></code></pre></div>
+<pre><code>##   (Intercept)    Phase Time_PhaseCTR
+## 1    125.2049 141.9503       28.2272</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#intervals(d.Model_giad)</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.Model_giad)</span></code></pre></div>
+<pre><code>## Linear mixed-effects model fit by REML
+##   Data: giad 
+##        AIC      BIC    logLik
+##   52.24512 48.56288 -20.12256
+## 
+## Random effects:
+##  Formula: ~1 | Case
+##         (Intercept) Residual
+## StdDev:     257.158 255.1411
+## 
+## Correlation Structure: AR(1)
+##  Formula: ~1 | Case 
+##  Parameter estimate(s):
+##       Phi 
+## 0.9911537 
+## Fixed effects:  DV ~ 1 + Phase + Time_PhaseCTR 
+##                  Value Std.Error DF  t-value p-value
+## (Intercept)   125.2049  361.0692  4 0.346761  0.7462
+## Phase         141.9503   41.4083  4 3.428063  0.0266
+## Time_PhaseCTR  28.2272   23.9428  4 1.178945  0.3038
+##  Correlation: 
+##               (Intr) Phase 
+## Phase         -0.076       
+## Time_PhaseCTR -0.065  0.573
+## 
+## Standardized Within-Group Residuals:
+##         Min          Q1         Med          Q3         Max 
+## -0.21245055 -0.14180403 -0.12121920 -0.06386127  0.12461789 
+## 
+## Number of Observations: 7
+## Number of Groups: 1</code></pre>
+</div>
+<div id="results-3" class="section level3">
+<h3>Results</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Value</strong></th>
+<th align="center"><strong>Score</strong></th>
+<th align="center"><strong><em>p</em>-Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Autocorrelation</td>
+<td align="center">0.991</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Level</td>
+<td align="center">141.950</td>
+<td align="center">.0266</td>
+</tr>
+<tr class="odd">
+<td align="left">Slope</td>
+<td align="center">28.2272</td>
+<td align="center">.3038</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 <p>
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">

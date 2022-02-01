@@ -26,6 +26,15 @@ data <- import(here("data", "mlm_data.csv"),
 
 head(data)
 
+saje <- import(here("data", "saje_mlm.csv"),
+               setclass = "tbl_df") 
+
+leli <- import(here("data", "leli_mlm.csv"),
+               setclass = "tbl_df") 
+
+giad <- import(here("data", "giad_mlm.csv"),
+               setclass = "tbl_df") 
+
 ```
 
 ## Analysis All Participants 
@@ -86,3 +95,167 @@ summary(d.Model)
 Interpretation: The effect size isn't particularly large, but the _p_-value is significant, which is helpful.The _p_-value for the change in slope is also significant.
 
 
+## SAJE
+
+### Null (unconditional) model
+
+```{r}
+d.Null_saje <- lme(DV~1,random=~1|Case,data=saje,
+control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Null_saje)
+#intervals(d.Null_saje)
+summary(d.Null_saje)
+```
+
+
+### Model with random intercept and change in level (with an autocorrelation component)
+```{r}
+d.Level_saje <- lme(DV~1+Phase,random=~1|Case,data=saje,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Level_saje)
+#intervals(d.Level_saje)
+summary(d.Level_saje)
+```
+
+
+### Model with random intercept and change in slope (with an autocorrelation component)
+```{r}
+d.Time_saje <- lme(DV~1+Time_CTR,random=~1|Case,data=saje,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Time_saje)
+#intervals(d.Time_saje)
+summary(d.Time_saje)
+```
+
+
+### Model with random intercept and change in level/slope in Tx (with autocorrelation)
+```{r}
+d.Model_saje <- lme(DV~1+Phase+Time_PhaseCTR,random=~1|Case,data=saje,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Model_saje)
+#intervals(d.Model_saje)
+summary(d.Model_saje)
+```
+
+### Results
+
+
+| **Value** | **Score** | **_p_-Value** |
+| :-------- | :-------: | :-----------: |
+| Autocorrelation     | -0.826      |  |
+| Level | 76.802      | .000 |
+| Slope | 9.147     |  .0068    |
+
+
+
+
+
+## LELI
+
+### Null (unconditional) model
+
+```{r}
+d.Null_leli <- lme(DV~1,random=~1|Case,data=leli,
+control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Null_leli)
+#intervals(d.Null_leli)
+summary(d.Null_leli)
+```
+
+
+### Model with random intercept and change in level (with an autocorrelation component)
+```{r}
+d.Level_leli <- lme(DV~1+Phase,random=~1|Case,data=leli,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Level_leli)
+#intervals(d.Level_leli)
+summary(d.Level_leli)
+```
+
+
+### Model with random intercept and change in slope (with an autocorrelation component)
+```{r}
+d.Time_leli <- lme(DV~1+Time_CTR,random=~1|Case,data=leli,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Time_leli)
+#intervals(d.Time_leli)
+summary(d.Time_leli)
+```
+
+
+### Model with random intercept and change in level/slope in Tx (with autocorrelation)
+```{r}
+d.Model_leli <- lme(DV~1+Phase+Time_PhaseCTR,random=~1|Case,data=leli,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Model_leli)
+#intervals(d.Model_leli)
+summary(d.Model_leli)
+```
+
+### Results
+
+
+| **Value** | **Score** | **_p_-Value** |
+| :-------- | :-------: | :-----------: |
+| Autocorrelation     | -0.243      |  |
+| Level | 63.566      | .0004 |
+| Slope | -13.630     |  .1593    |
+
+
+
+## GIAD
+
+### Null (unconditional) model
+
+```{r}
+d.Null_giad <- lme(DV~1,random=~1|Case,data=giad,
+control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Null_giad)
+#intervals(d.Null_giad)
+summary(d.Null_giad)
+```
+
+
+### Model with random intercept and change in level (with an autocorrelation component)
+```{r}
+d.Level_giad <- lme(DV~1+Phase,random=~1|Case,data=giad,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Level_giad)
+#intervals(d.Level_giad)
+summary(d.Level_giad)
+```
+
+
+### Model with random intercept and change in slope (with an autocorrelation component)
+```{r}
+d.Time_giad <- lme(DV~1+Time_CTR,random=~1|Case,data=giad,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Time_giad)
+#intervals(d.Time_giad)
+summary(d.Time_giad)
+```
+
+
+### Model with random intercept and change in level/slope in Tx (with autocorrelation)
+```{r}
+d.Model_giad <- lme(DV~1+Phase+Time_PhaseCTR,random=~1|Case,data=giad,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Model_giad)
+#intervals(d.Model_giad)
+summary(d.Model_giad)
+```
+
+### Results
+
+
+| **Value** | **Score** | **_p_-Value** |
+| :-------- | :-------: | :-----------: |
+| Autocorrelation     | 0.991      |  |
+| Level | 141.950      | .0266 |
+| Slope | 28.2272     |  .3038    |
