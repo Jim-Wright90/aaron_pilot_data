@@ -6,7 +6,7 @@ output:
     highlight: tango
 ---
 
-## Results 
+## MLM Design Results 
 
 | **Value** | **Score** |
 | :-------- | :-------: |
@@ -15,4 +15,109 @@ output:
 | *p*-value | .0032     | 
 
 
-**_Interpretation:_** A _Tau-U_ value of .810 corresponds to a medium to high treatment effect. All three participants required a baseline trend correction.  
+**_Interpretation:_** A _Tau-U_ value of .810 corresponds to a medium to high treatment effect. All three participants required a baseline trend correction. 
+
+
+
+## AB Tau-U Calculations with `SCAN` Package
+
+Code for calculations accessible [here](https://jazznbass.github.io/scan-Book/overlapping-indices.html)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r setup 1, include=FALSE}
+library(tidyverse)
+library(rio)
+library(here)
+library(gghighlight)
+library(forcats)
+library(ggrepel)
+library(gt)
+library(knitr)
+library(kableExtra)
+library(reactable)
+library(plotly)
+library(SCVA)
+library(patchwork)
+library(colorblindr)
+library(scan)
+
+theme_set(theme_minimal(15) +
+            theme(legend.position = "bottom",
+                  panel.grid.major.x = element_line(color = "gray60"),
+                  panel.grid.minor.x = element_blank(),
+                  panel.grid.major.y = element_blank())
+          )
+ 
+```
+
+
+### SAJE 
+
+#### Parker (2011) Version
+
+```{r, include=TRUE}
+saje_1 <- scdf(c(44, 35, 40, 104, 118, 122), phase.design = c(A = 3, B = 3))
+
+saje_res <- tau_u(saje_1)
+
+print(saje_res, complete = TRUE)
+```
+
+#### Tarlow (2016) Version
+
+This calculation is based on Kendalls Tau
+
+```{r, include=TRUE}
+saje_2 <- scdf(c(A = 44, 35, 40, 104, 118, 122, B = 104, 118, 122))
+
+corrected_tau(saje_2)
+```
+
+
+
+### LELI
+
+#### Parker (2011) Version
+
+```{r, include=TRUE}
+leli_1 <- scdf(c(33, 54, 39, 27, 48, 125, 89, 100), phase.design = c(A = 5, B = 3))
+
+leli_res <- tau_u(leli_1)
+
+print(leli_res, complete = TRUE)
+```
+
+#### Tarlow (2016) Version
+
+
+```{r, include=TRUE}
+leli_2 <- scdf(c(A = 33, 54, 39, 27, 48, B = 125, 89, 100))
+
+corrected_tau(leli_2)
+```
+
+
+
+### GIAD
+
+#### Parker (2011) Version
+
+```{r, include=TRUE}
+giad_1 <- scdf(c(157, 123, 71, 94, 208, 226, 265), phase.design = c(A = 4, B = 3))
+
+giad_res <- tau_u(giad_1)
+
+print(giad_res, complete = TRUE)
+```
+
+#### Tarlow (2016) Version
+
+
+```{r, include=TRUE}
+giad_2 <- scdf(c(A = 157, 123, 71, 94, B = 208, 226, 265))
+
+corrected_tau(giad_2)
+```

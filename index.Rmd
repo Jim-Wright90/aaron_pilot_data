@@ -6,6 +6,10 @@ output:
     highlight: tango
 ---
 
+Treatment endurance has been identified as the most recent primary DV of interest. 
+
+Treatment endurance calculated as the sum of accurate trials and inaccurate trials. 
+
 ```{r, include=FALSE}
 #rmarkdown::render_site()
 ```

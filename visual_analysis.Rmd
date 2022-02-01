@@ -144,7 +144,9 @@ saje_end <- ggplot() +
 ```
 
 ![](tools/saje_end.png){width=100%}
+### SAJE PND
 
+![](tools/saje_pnd.png){width=100%}
 
 ### SAJE Accuracy 
 
@@ -186,6 +188,10 @@ leli_end <- ggplot() +
 ```
 
 ![](tools/leli_end.png){width=100%}
+
+### LELI PND
+
+![](tools/leli_pnd.png){width=100%}
 
 ### LELI Accuracy 
 
@@ -229,6 +235,9 @@ giad_end <- ggplot() +
 
 
 ![](tools/giad_end.png){width=100%}
+### GIAD PND
+
+![](tools/giad_pnd.png){width=100%}
 
 ### GIAD Accuracy 
 
