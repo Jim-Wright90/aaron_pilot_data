@@ -114,14 +114,14 @@ all_plots <- saje_plot / giad_plot / leli_plot
 all_plots
 ```
 
-```{r, include=TRUE, fig.height=9, fig.width=10}
+```{r, include=TRUE, fig.height=5, fig.width=5}
 all_plots
 ```
 
 
 ## Visual Analysis with PowerPoint Lines Added - MBL
 
-![](tools/visual_analysis.png){width=100%}
+![](tools/visual_analysis.png){height=50%}
 
 
 ## AB Visual Analysis 
@@ -143,10 +143,12 @@ saje_end <- ggplot() +
        y = "Treatment Endurance") 
 ```
 
-![](tools/saje_end.png){width=100%}
+![](tools/saje_end.png){height=50%}
+
+
 ### SAJE PND
 
-![](tools/saje_pnd.png){width=100%}
+![](tools/saje_pnd.png){height=50%}
 
 ### SAJE Accuracy 
 
@@ -167,7 +169,7 @@ saje_acc <- ggplot() +
 ```
 
 
-![](tools/saje_acc.png){width=100%}
+![](tools/saje_acc.png){height=50%}
 
 
 ### LELI Endurance
@@ -187,11 +189,11 @@ leli_end <- ggplot() +
        y = "Treatment Endurance") 
 ```
 
-![](tools/leli_end.png){width=100%}
+![](tools/leli_end.png){height=50%}
 
 ### LELI PND
 
-![](tools/leli_pnd.png){width=100%}
+![](tools/leli_pnd.png){height=50%}
 
 ### LELI Accuracy 
 
@@ -212,7 +214,7 @@ leli_acc <- ggplot() +
 ```
 
 
-![](tools/leli_acc.png){width=100%}
+![](tools/leli_acc.png){height=50%}
 
 
 
@@ -234,10 +236,12 @@ giad_end <- ggplot() +
 ```
 
 
-![](tools/giad_end.png){width=100%}
+![](tools/giad_end.png){height=50%}
+
+
 ### GIAD PND
 
-![](tools/giad_pnd.png){width=100%}
+![](tools/giad_pnd.png){height=50%}
 
 ### GIAD Accuracy 
 
@@ -258,4 +262,4 @@ giad_acc <- ggplot() +
 ```
 
 
-![](tools/giad_acc.png){width=100%}
+![](tools/giad_acc.png){height=50%}

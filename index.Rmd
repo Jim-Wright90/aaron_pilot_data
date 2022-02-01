@@ -10,6 +10,9 @@ Treatment endurance has been identified as the most recent primary DV of interes
 
 Treatment endurance calculated as the sum of accurate trials and inaccurate trials. 
 
+
+The `Accuracy` tab provides PND and Tau-U calculations for each participant with trial accuracy per session as the repeated DV measurement
+
 ```{r, include=FALSE}
 #rmarkdown::render_site()
 ```

@@ -2,6 +2,8 @@
 title: "Tau-U"
 output:
   html_document:
+    toc: true
+    toc_float: true
     theme: united
     highlight: tango
 ---
@@ -59,7 +61,8 @@ theme_set(theme_minimal(15) +
 #### Parker (2011) Version
 
 ```{r, include=TRUE}
-saje_1 <- scdf(c(44, 35, 40, 104, 118, 122), phase.design = c(A = 3, B = 3))
+saje_1 <- scdf(c(44, 35, 40, 104, 118, 122), 
+               phase.design = c(A = 3, B = 3))
 
 saje_res <- tau_u(saje_1)
 
@@ -71,7 +74,7 @@ print(saje_res, complete = TRUE)
 This calculation is based on Kendalls Tau
 
 ```{r, include=TRUE}
-saje_2 <- scdf(c(A = 44, 35, 40, 104, 118, 122, B = 104, 118, 122))
+saje_2 <- scdf(c(A = 44, 35, 40, B = 104, 118, 122))
 
 corrected_tau(saje_2)
 ```

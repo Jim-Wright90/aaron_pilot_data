@@ -16,6 +16,8 @@ navbar:
     href: mlm.html
   - text: Tau-U
     href: tau_u.html
+  - text: Accuracy
+    href: accuracy.html
   - icon: fa-github
     href: https://github.com/Jim-Wright90/aaron_pilot_data.git
 output:
