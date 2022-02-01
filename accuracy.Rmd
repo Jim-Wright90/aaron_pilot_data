@@ -139,7 +139,7 @@ pnd(giad_pnd, decreasing = FALSE)
 giad_1 <- scdf(c(89.81, 82.93, 87.32, 85.11, 88.94, 85.84, 95.09),
                  phase.design = c(A = 4, B = 3))
 
-giad_res <- tau_u(leli_1)
+giad_res <- tau_u(giad_1)
 
 print(giad_res, complete = TRUE)
 ```
