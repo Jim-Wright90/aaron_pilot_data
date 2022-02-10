@@ -8,19 +8,6 @@ output:
     highlight: tango
 ---
 
-## MLM Design Results 
-
-| **Value** | **Score** |
-| :-------- | :-------: |
-| Tau-U     | .810      |
-| *z*-Score | 2.94      |
-| *p*-value | .0032     | 
-
-
-**_Interpretation:_** A _Tau-U_ value of .810 corresponds to a medium to high treatment effect. All three participants required a baseline trend correction. 
-
-
-
 ## AB Tau-U Calculations with `SCAN` Package
 
 Code for calculations accessible [here](https://jazznbass.github.io/scan-Book/overlapping-indices.html)
@@ -61,7 +48,7 @@ theme_set(theme_minimal(15) +
 #### Parker (2011) Version
 
 ```{r, include=TRUE}
-saje_1 <- scdf(c(44, 35, 40, 104, 118, 122), 
+saje_1 <- scdf(c(69, 48, 72, 115, 135, 155), 
                phase.design = c(A = 3, B = 3))
 
 saje_res <- tau_u(saje_1)
@@ -74,7 +61,7 @@ print(saje_res, complete = TRUE)
 This calculation is based on Kendalls Tau
 
 ```{r, include=TRUE}
-saje_2 <- scdf(c(A = 44, 35, 40, B = 104, 118, 122))
+saje_2 <- scdf(c(A = 69, 48, 72, B = 115, 135, 155))
 
 corrected_tau(saje_2)
 ```
@@ -86,7 +73,7 @@ corrected_tau(saje_2)
 #### Parker (2011) Version
 
 ```{r, include=TRUE}
-leli_1 <- scdf(c(33, 54, 39, 27, 48, 125, 89, 100), phase.design = c(A = 5, B = 3))
+leli_1 <- scdf(c(34, 54, 39, 27, 48, 116, 94, 101), phase.design = c(A = 5, B = 3))
 
 leli_res <- tau_u(leli_1)
 
@@ -97,7 +84,7 @@ print(leli_res, complete = TRUE)
 
 
 ```{r, include=TRUE}
-leli_2 <- scdf(c(A = 33, 54, 39, 27, 48, B = 125, 89, 100))
+leli_2 <- scdf(c(A = 34, 54, 39, 27, 48, B = 116, 94, 101))
 
 corrected_tau(leli_2)
 ```
@@ -109,7 +96,7 @@ corrected_tau(leli_2)
 #### Parker (2011) Version
 
 ```{r, include=TRUE}
-giad_1 <- scdf(c(157, 123, 71, 94, 208, 226, 265), phase.design = c(A = 4, B = 3))
+giad_1 <- scdf(c(159, 123, 72, 94, 210, 226, 275), phase.design = c(A = 4, B = 3))
 
 giad_res <- tau_u(giad_1)
 
@@ -120,7 +107,7 @@ print(giad_res, complete = TRUE)
 
 
 ```{r, include=TRUE}
-giad_2 <- scdf(c(A = 157, 123, 71, 94, B = 208, 226, 265))
+giad_2 <- scdf(c(A = 159, 123, 71, 94, B = 210, 226, 275))
 
 corrected_tau(giad_2)
 ```

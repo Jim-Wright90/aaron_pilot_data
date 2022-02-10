@@ -323,13 +323,10 @@ div.tocify {
   <a href="visual_analysis.html">Visual Analysis</a>
 </li>
 <li>
-  <a href="mlm.html">MLM</a>
+  <a href="tau_u.html">Tau-U:Endurance</a>
 </li>
 <li>
-  <a href="tau_u.html">Tau-U</a>
-</li>
-<li>
-  <a href="accuracy.html">Accuracy</a>
+  <a href="accuracy.html">Tau-U:Accuracy</a>
 </li>
 <li>
   <a href="https://github.com/Jim-Wright90/aaron_pilot_data.git">
@@ -357,10 +354,10 @@ div.tocify {
 <h3>PND</h3>
 <pre><code>## Percent Non-Overlapping Data
 ## 
-##   Case    PND Total Exceeds
-##  Case1 66.67%     3       2
+##   Case  PND Total Exceeds
+##  Case1 100%     3       3
 ## 
-## Mean  : 66.67 %</code></pre>
+## Mean  : 100 %</code></pre>
 </div>
 <div id="tau-u" class="section level3">
 <h3>Tau-U</h3>
@@ -370,27 +367,27 @@ div.tocify {
 ## Method:  complete 
 ## 
 ## Overall Tau-U: 
-##                        Model Tau_U    se     z df      p
-##                      A vs. B 0.556 0.309 1.797  0 0.0724
-##            A vs. B - Trend A 0.298 0.407 0.732  0 0.4643
-##            A vs. B + Trend B 0.447 0.358 1.250  0 0.2113
-##  A vs. B + Trend B - Trend A 0.333 0.398 0.839  0 0.4017
+##                        Model Tau_U    se    z df        p
+##                      A vs. B   NaN   Inf  NaN  0      NaN
+##            A vs. B - Trend A 0.745 0.199 3.75  0 0.000177
+##            A vs. B + Trend B 0.596 0.288 2.07  0 0.038549
+##  A vs. B + Trend B - Trend A 0.600 0.286 2.10  0 0.036054
 ## 
 ## $Case1
-##                             kendall   k_p n pairs pos neg ties S    D   Tau
-## A vs. B                       0.430 0.383 6     9   7   2    0 5  9.0 0.556
-## Trend A                       0.333 1.000 3     3   2   1    0 1  3.0 0.333
-## Trend B                       0.333 1.000 3     3   2   1    0 1  3.0 0.333
-## A vs. B - Trend A             0.298 0.546 6    12   8   4    0 4 13.4 0.298
-## A vs. B + Trend B             0.447 0.314 6    12   9   3    0 6 13.4 0.447
-## A vs. B + Trend B - Trend A   0.333 0.452 6    15  10   5    0 5 15.0 0.333
-##                             SD_S VAR_S SE_Tau     Z     p
-## A vs. B                     4.58 21.00  0.509 1.091 0.275
-## Trend A                     1.91  3.67  0.638 0.522 0.602
-## Trend B                     1.91  3.67  0.638 0.522 0.602
-## A vs. B - Trend A           4.97 24.67  0.370 0.805 0.421
-## A vs. B + Trend B           4.97 24.67  0.370 1.208 0.227
-## A vs. B + Trend B - Trend A 5.32 28.33  0.355 0.939 0.348</code></pre>
+##                             kendall    k_p n pairs pos neg ties  S    D    Tau
+## A vs. B                       0.775 0.0809 6     9   9   0    0  9  9.0  1.000
+## Trend A                      -0.333 0.2963 3     3   1   2    0 -1  3.0 -0.333
+## Trend B                      -0.333 0.2963 3     3   1   2    0 -1  3.0 -0.333
+## A vs. B - Trend A             0.745 0.0700 6    12  11   1    0 10 13.4  0.745
+## A vs. B + Trend B             0.596 0.1587 6    12  10   2    0  8 13.4  0.596
+## A vs. B + Trend B - Trend A   0.600 0.1329 6    15  12   3    0  9 15.0  0.600
+##                             SD_S VAR_S SE_Tau      Z      p
+## A vs. B                     4.58 21.00  0.509  1.964 0.0495
+## Trend A                     1.91  3.67  0.638 -0.522 0.6015
+## Trend B                     1.91  3.67  0.638 -0.522 0.6015
+## A vs. B - Trend A           4.97 24.67  0.370  2.013 0.0441
+## A vs. B + Trend B           4.97 24.67  0.370  1.611 0.1072
+## A vs. B + Trend B - Trend A 5.32 28.33  0.355  1.691 0.0909</code></pre>
 </div>
 <div id="tarlow-2016-version" class="section level4">
 <h4>Tarlow (2016) Version</h4>
@@ -398,10 +395,10 @@ div.tocify {
 <pre><code>## Baseline corrected tau
 ## 
 ## Auto correlation in baseline:
-## tau = 0.33; p = 1 
+## tau = -0.33; p = 0.296 
 ## 
 ## Baseline corrected tau:
-## tau = 0.43; p = 0.383 
+## tau = 0.77; p = 0.081 
 ## 
 ## Baseline correction not applied.</code></pre>
 </div>
@@ -413,10 +410,10 @@ div.tocify {
 <h3>PND</h3>
 <pre><code>## Percent Non-Overlapping Data
 ## 
-##   Case    PND Total Exceeds
-##  Case1 66.67%     3       2
+##   Case  PND Total Exceeds
+##  Case1 100%     3       3
 ## 
-## Mean  : 66.67 %</code></pre>
+## Mean  : 100 %</code></pre>
 </div>
 <div id="tau-u-1" class="section level3">
 <h3>Tau-U</h3>
@@ -426,27 +423,27 @@ div.tocify {
 ## Method:  complete 
 ## 
 ## Overall Tau-U: 
-##                        Model Tau_U     se    z df        p
-##                      A vs. B 0.867 0.0941 9.21  0 3.17e-20
-##            A vs. B - Trend A 0.718 0.1830 3.92  0 8.73e-05
-##            A vs. B + Trend B 0.713 0.1860 3.83  0 1.27e-04
-##  A vs. B + Trend B - Trend A 0.786 0.1446 5.43  0 5.55e-08
+##                        Model Tau_U    se    z df        p
+##                      A vs. B   NaN   Inf  NaN  0      NaN
+##            A vs. B - Trend A 0.794 0.140 5.68  0 1.38e-08
+##            A vs. B + Trend B 0.713 0.186 3.83  0 1.27e-04
+##  A vs. B + Trend B - Trend A 0.786 0.145 5.43  0 5.55e-08
 ## 
 ## $Case1
 ##                             kendall     k_p n pairs pos neg ties  S    D    Tau
-## A vs. B                       0.634 0.07364 8    15  14   1    0 13 15.0  0.867
+## A vs. B                       0.732 0.03689 8    15  15   0    0 15 15.0  1.000
 ## Trend A                      -0.600 0.08641 5    10   2   8    0 -6 10.0 -0.600
-## Trend B                       1.000 0.29627 3     3   3   0    0  3  3.0  1.000
-## A vs. B - Trend A             0.718 0.02190 8    25  22   3    0 19 26.5  0.718
+## Trend B                       0.333 1.00000 3     3   2   1    0  1  3.0  0.333
+## A vs. B - Trend A             0.794 0.01087 8    25  23   2    0 21 26.5  0.794
 ## A vs. B + Trend B             0.713 0.03154 8    18  17   1    0 16 22.4  0.713
 ## A vs. B + Trend B - Trend A   0.786 0.00937 8    28  25   3    0 22 28.0  0.786
-##                             SD_S VAR_S SE_Tau     Z       p
-## A vs. B                     6.71 45.00  0.447  1.94 0.05263
-## Trend A                     4.08 16.67  0.408 -1.47 0.14164
-## Trend B                     1.91  3.67  0.638  1.57 0.11719
-## A vs. B - Trend A           7.85 61.67  0.297  2.42 0.01554
-## A vs. B + Trend B           6.98 48.67  0.311  2.29 0.02182
-## A vs. B + Trend B - Trend A 8.08 65.33  0.289  2.72 0.00649</code></pre>
+##                             SD_S VAR_S SE_Tau      Z       p
+## A vs. B                     6.71 45.00  0.447  2.236 0.02535
+## Trend A                     4.08 16.67  0.408 -1.470 0.14164
+## Trend B                     1.91  3.67  0.638  0.522 0.60151
+## A vs. B - Trend A           7.85 61.67  0.297  2.674 0.00749
+## A vs. B + Trend B           6.98 48.67  0.311  2.294 0.02182
+## A vs. B + Trend B - Trend A 8.08 65.33  0.289  2.722 0.00649</code></pre>
 </div>
 <div id="tarlow-2016-version-1" class="section level4">
 <h4>Tarlow (2016) Version</h4>
@@ -457,7 +454,7 @@ div.tocify {
 ## tau = -0.6; p = 0.086 
 ## 
 ## Baseline corrected tau:
-## tau = 0.63; p = 0.074 
+## tau = 0.73; p = 0.037 
 ## 
 ## Baseline correction not applied.</code></pre>
 </div>

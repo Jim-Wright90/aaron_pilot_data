@@ -12,11 +12,9 @@ navbar:
   right:
   - text: Visual Analysis
     href: visual_analysis.html
-  - text: MLM
-    href: mlm.html
-  - text: Tau-U
+  - text: Tau-U:Endurance
     href: tau_u.html
-  - text: Accuracy
+  - text: Tau-U:Accuracy
     href: accuracy.html
   - icon: fa-github
     href: https://github.com/Jim-Wright90/aaron_pilot_data.git
