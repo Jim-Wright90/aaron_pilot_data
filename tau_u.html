@@ -366,20 +366,20 @@ div.tocify {
 ##  A vs. B + Trend B - Trend A 0.733 0.2067  3.55  0 3.89e-04
 ## 
 ## $Case1
-##                             kendall    k_p n pairs pos neg ties  S    D   Tau
-## A vs. B                       0.775 0.0809 6     9   9   0    0  9  9.0 1.000
-## Trend A                       0.333 1.0000 3     3   2   1    0  1  3.0 0.333
-## Trend B                       1.000 0.2963 3     3   3   0    0  3  3.0 1.000
-## A vs. B - Trend A             0.596 0.1587 6    12  10   2    0  8 13.4 0.596
-## A vs. B + Trend B             0.894 0.0268 6    12  12   0    0 12 13.4 0.894
-## A vs. B + Trend B - Trend A   0.733 0.0603 6    15  13   2    0 11 15.0 0.733
-##                             SD_S VAR_S SE_Tau     Z      p
-## A vs. B                     4.58 21.00  0.509 1.964 0.0495
-## Trend A                     1.91  3.67  0.638 0.522 0.6015
-## Trend B                     1.91  3.67  0.638 1.567 0.1172
-## A vs. B - Trend A           4.97 24.67  0.370 1.611 0.1072
-## A vs. B + Trend B           4.97 24.67  0.370 2.416 0.0157
-## A vs. B + Trend B - Trend A 5.32 28.33  0.355 2.067 0.0388</code></pre>
+##                             kendall    k_p n pairs pos neg ties  S    D   Tau SD_S VAR_S SE_Tau
+## A vs. B                       0.775 0.0809 6     9   9   0    0  9  9.0 1.000 4.58 21.00  0.509
+## Trend A                       0.333 1.0000 3     3   2   1    0  1  3.0 0.333 1.91  3.67  0.638
+## Trend B                       1.000 0.2963 3     3   3   0    0  3  3.0 1.000 1.91  3.67  0.638
+## A vs. B - Trend A             0.596 0.1587 6    12  10   2    0  8 13.4 0.596 4.97 24.67  0.370
+## A vs. B + Trend B             0.894 0.0268 6    12  12   0    0 12 13.4 0.894 4.97 24.67  0.370
+## A vs. B + Trend B - Trend A   0.733 0.0603 6    15  13   2    0 11 15.0 0.733 5.32 28.33  0.355
+##                                 Z      p
+## A vs. B                     1.964 0.0495
+## Trend A                     0.522 0.6015
+## Trend B                     1.567 0.1172
+## A vs. B - Trend A           1.611 0.1072
+## A vs. B + Trend B           2.416 0.0157
+## A vs. B + Trend B - Trend A 2.067 0.0388</code></pre>
 </div>
 <div id="tarlow-2016-version" class="section level4">
 <h4>Tarlow (2016) Version</h4>
@@ -410,20 +410,20 @@ div.tocify {
 ##  A vs. B + Trend B - Trend A 0.500 0.283 1.76  0 0.07776
 ## 
 ## $Case1
-##                             kendall    k_p n pairs pos neg ties  S    D    Tau
-## A vs. B                       0.732 0.0369 8    15  15   0    0 15 15.0  1.000
-## Trend A                       0.000 0.8065 5    10   5   5    0  0 10.0  0.000
-## Trend B                      -0.333 0.2963 3     3   1   2    0 -1  3.0 -0.333
-## A vs. B - Trend A             0.567 0.0746 8    25  20   5    0 15 26.5  0.567
-## A vs. B + Trend B             0.624 0.0624 8    18  16   2    0 14 22.4  0.624
-## A vs. B + Trend B - Trend A   0.500 0.1078 8    28  21   7    0 14 28.0  0.500
-##                             SD_S VAR_S SE_Tau      Z      p
-## A vs. B                     6.71 45.00  0.447  2.236 0.0253
-## Trend A                     4.08 16.67  0.408  0.000 1.0000
-## Trend B                     1.91  3.67  0.638 -0.522 0.6015
-## A vs. B - Trend A           7.85 61.67  0.297  1.910 0.0561
-## A vs. B + Trend B           6.98 48.67  0.311  2.007 0.0448
-## A vs. B + Trend B - Trend A 8.08 65.33  0.289  1.732 0.0833</code></pre>
+##                             kendall    k_p n pairs pos neg ties  S    D    Tau SD_S VAR_S
+## A vs. B                       0.732 0.0369 8    15  15   0    0 15 15.0  1.000 6.71 45.00
+## Trend A                       0.000 0.8065 5    10   5   5    0  0 10.0  0.000 4.08 16.67
+## Trend B                      -0.333 0.2963 3     3   1   2    0 -1  3.0 -0.333 1.91  3.67
+## A vs. B - Trend A             0.567 0.0746 8    25  20   5    0 15 26.5  0.567 7.85 61.67
+## A vs. B + Trend B             0.624 0.0624 8    18  16   2    0 14 22.4  0.624 6.98 48.67
+## A vs. B + Trend B - Trend A   0.500 0.1078 8    28  21   7    0 14 28.0  0.500 8.08 65.33
+##                             SE_Tau      Z      p
+## A vs. B                      0.447  2.236 0.0253
+## Trend A                      0.408  0.000 1.0000
+## Trend B                      0.638 -0.522 0.6015
+## A vs. B - Trend A            0.297  1.910 0.0561
+## A vs. B + Trend B            0.311  2.007 0.0448
+## A vs. B + Trend B - Trend A  0.289  1.732 0.0833</code></pre>
 </div>
 <div id="tarlow-2016-version-1" class="section level4">
 <h4>Tarlow (2016) Version</h4>
@@ -453,20 +453,20 @@ div.tocify {
 ##  A vs. B + Trend B - Trend A 0.905 0.0741 12.22  0 2.53e-34
 ## 
 ## $Case1
-##                             kendall     k_p n pairs pos neg ties  S    D    Tau
-## A vs. B                       0.756 0.05183 7    12  12   0    0 12 12.0  1.000
-## Trend A                      -0.667 0.08943 4     6   1   5    0 -4  6.0 -0.667
-## Trend B                       1.000 0.29627 3     3   3   0    0  3  3.0  1.000
-## A vs. B - Trend A             0.823 0.01866 7    18  17   1    0 16 19.4  0.823
-## A vs. B + Trend B             0.845 0.01907 7    15  15   0    0 15 17.7  0.845
-## A vs. B + Trend B - Trend A   0.905 0.00686 7    21  20   1    0 19 21.0  0.905
-##                             SD_S VAR_S SE_Tau     Z       p
-## A vs. B                     5.66 32.00  0.471  2.12 0.03389
-## Trend A                     2.94  8.67  0.491 -1.36 0.17423
-## Trend B                     1.91  3.67  0.638  1.57 0.11719
-## A vs. B - Trend A           6.38 40.67  0.328  2.51 0.01211
-## A vs. B + Trend B           5.97 35.67  0.336  2.51 0.01202
-## A vs. B + Trend B - Trend A 6.66 44.33  0.317  2.85 0.00432</code></pre>
+##                             kendall     k_p n pairs pos neg ties  S    D    Tau SD_S VAR_S
+## A vs. B                       0.756 0.05183 7    12  12   0    0 12 12.0  1.000 5.66 32.00
+## Trend A                      -0.667 0.08943 4     6   1   5    0 -4  6.0 -0.667 2.94  8.67
+## Trend B                       1.000 0.29627 3     3   3   0    0  3  3.0  1.000 1.91  3.67
+## A vs. B - Trend A             0.823 0.01866 7    18  17   1    0 16 19.4  0.823 6.38 40.67
+## A vs. B + Trend B             0.845 0.01907 7    15  15   0    0 15 17.7  0.845 5.97 35.67
+## A vs. B + Trend B - Trend A   0.905 0.00686 7    21  20   1    0 19 21.0  0.905 6.66 44.33
+##                             SE_Tau     Z       p
+## A vs. B                      0.471  2.12 0.03389
+## Trend A                      0.491 -1.36 0.17423
+## Trend B                      0.638  1.57 0.11719
+## A vs. B - Trend A            0.328  2.51 0.01211
+## A vs. B + Trend B            0.336  2.51 0.01202
+## A vs. B + Trend B - Trend A  0.317  2.85 0.00432</code></pre>
 </div>
 <div id="tarlow-2016-version-2" class="section level4">
 <h4>Tarlow (2016) Version</h4>
