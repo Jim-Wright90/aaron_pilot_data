@@ -174,7 +174,7 @@ giad_combined <- giad_duration + giad_accuracy
 
 ## Endurance and Accuracy Relationship Plots
 
-These scatter plots display the linear relationship between session duration and the number of correct trials observed per session. These plots appear to be a good representation of treatment endurance. 
+These scatter plots display the linear relationship between session duration and the number of correct trials observed per session. These plots appear to be a good representation of treatment endurance. The number of correct trials is outlined as the x-axis and can be interpreted as a strong predictor of session duration (minutes), suggesting that session duration was dependent upon the number of correct trials the participant obtained per session.
 
 ### SAJE
 
@@ -198,10 +198,27 @@ saje_scatter <- ggplot(saje, aes(all_duration, all_correct)) +
        y = "Number of Correct Trials per Session",
        caption = "Text labels indicate session number")
 
+saje_scatter2 <- ggplot(saje, aes(all_correct, all_duration)) +
+  geom_point(size = 2) +
+  geom_vline(xintercept = 75,
+             linetype = "dashed",
+             color = "black",
+             size = 1) +
+  geom_text_repel(aes(label = session),
+                  size = 4) +
+  scale_x_continuous(limits = c(0, 140),
+                     breaks = c(0, 20, 40, 60, 80, 100, 120, 140)) +
+  scale_y_continuous(limits = c(0, 100),
+                     breaks = c(0, 20, 40, 60, 80, 100)) +
+  theme_classic() +
+  labs(x = "Number of Correct Trials per Session",
+       y = "Session Duration (Minutes)",
+       caption = "Text labels indicate session number")
+
 ```
 
 ```{r, include=TRUE}
-saje_scatter
+saje_scatter2
 ```
 
 
@@ -225,10 +242,28 @@ leli_scatter <- ggplot(leli, aes(all_duration, all_correct)) +
        y = "Number of Correct Trials per Session",
        caption = "Text labels indicate session number")
 
+
+leli_scatter2 <- ggplot(leli, aes(all_correct, all_duration)) +
+  geom_point(size = 2) +
+  geom_vline(xintercept = 47.5,
+             linetype = "dashed",
+             color = "black",
+             size = 1) +
+  geom_text_repel(aes(label = session),
+                  size = 4) +
+  scale_x_continuous(limits = c(0, 80),
+                     breaks = c(0, 10, 20, 30, 40, 50, 60, 70, 80)) +
+  scale_y_continuous(limits = c(0, 120),
+                     breaks = c(0, 20, 40, 60, 80, 100, 120)) +
+  theme_classic() +
+  labs(x = "Number of Correct Trials per Session",
+       y = "Session Duration (Minutes)",
+       caption = "Text labels indicate session number")
+
 ```
 
 ```{r, include=TRUE}
-leli_scatter
+leli_scatter2
 ```
 
 
@@ -252,10 +287,27 @@ giad_scatter <- ggplot(giad, aes(all_duration, all_correct)) +
        y = "Number of Correct Trials per Session",
        caption = "Text labels indicate session number")
 
+giad_scatter2 <- ggplot(giad, aes(all_correct, all_duration)) +
+  geom_point(size = 2) +
+  geom_vline(xintercept = 165,
+             linetype = "dashed",
+             color = "black",
+             size = 1) +
+  geom_text_repel(aes(label = session),
+                  size = 4) +
+  scale_x_continuous(limits = c(0, 300),
+                     breaks = c(0, 50, 100, 150, 200, 250, 300)) +
+  scale_y_continuous(limits = c(0, 150),
+                     breaks = c(0, 25, 50, 75, 100, 125, 150)) +
+  theme_classic() +
+  labs(x = "Number of Correct Trials per Session",
+       y = "Session Duration (Minutes)",
+       caption = "Text labels indicate session number")
+
 ```
 
 ```{r, include=TRUE}
-giad_scatter
+giad_scatter2
 ```
 
 ## Phase Averages 
