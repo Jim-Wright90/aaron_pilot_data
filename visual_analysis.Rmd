@@ -315,3 +315,9 @@ combined_acc_plot2 <- ggplot(par_acc2_long, aes(session, accuracy,
 combined_acc_plot2
 ```
 
+
+#### Version 3
+
+This version was produced with Microsoft Excel instead of `R` 
+
+![](tools/combined_acc_excel.png){width=75%}
