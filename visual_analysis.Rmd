@@ -50,6 +50,15 @@ par_acc <- import(here("data", "all_accuracy.xlsx"),
  
 par_acc2 <- import(here("data", "all_accuracy_2.xlsx"),
                setclass = "tbl_df") 
+
+saje2 <- import(here("data", "SAJE_status_goal2.xlsx"),
+               setclass = "tbl_df") 
+
+giad2 <- import(here("data", "GIAD_status_goal2.xlsx"),
+               setclass = "tbl_df") 
+
+leli2 <- import(here("data", "LELI_status_goal2.xlsx"),
+               setclass = "tbl_df") 
 ```
 
 
@@ -321,3 +330,118 @@ combined_acc_plot2
 This version was produced with Microsoft Excel instead of `R` 
 
 ![](tools/combined_acc_excel.png){width=75%}
+
+
+## MBL Visual Analysis 
+
+### Digit Span 
+
+```{r, include=FALSE}
+saje_ds <- ggplot() +
+  geom_line(data = saje2, aes(x = session, y = bl_ds)) +
+  geom_point(data = saje2, aes(x = session, y = bl_ds), size = 2) +
+  geom_line(data = saje2, aes(x = session, y = tx_ds)) +
+  geom_point(data = saje2, aes(x = session, y = tx_ds), size = 2) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  theme_classic() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.line.x = element_blank()) +
+  labs(x = "",
+       y = "") 
+
+giad_ds <- ggplot() +
+  geom_line(data = giad2, aes(x = session, y = bl_ds)) +
+  geom_point(data = giad2, aes(x = session, y = bl_ds), size = 2) +
+  geom_line(data = giad2, aes(x = session, y = tx_ds)) +
+  geom_point(data = giad2, aes(x = session, y = tx_ds), size = 2) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  theme_classic() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.line.x = element_blank()) +
+  labs(x = "",
+       y = "") 
+
+leli_ds <- ggplot() +
+  geom_line(data = leli2, aes(x = session, y = bl_ds)) +
+  geom_point(data = leli2, aes(x = session, y = bl_ds), size = 2) +
+  geom_line(data = leli2, aes(x = session, y = tx_ds)) +
+  geom_point(data = leli2, aes(x = session, y = tx_ds), size = 2) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  theme_classic() +
+  labs(x = "",
+       y = "") 
+
+all_plot_ds <- saje_ds / giad_ds / leli_ds
+```
+
+![](tools/mbl_ds_ppx.png){width=75%}
+
+
+### Sentences
+
+```{r, include=FALSE}
+saje_sen <- ggplot() +
+  geom_line(data = saje2, aes(x = session, y = bl_sen)) +
+  geom_point(data = saje2, aes(x = session, y = bl_sen), size = 2) +
+  geom_line(data = saje2, aes(x = session, y = tx_sen)) +
+  geom_point(data = saje2, aes(x = session, y = tx_sen), size = 2) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  theme_classic() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.line.x = element_blank()) +
+  labs(x = "",
+       y = "") 
+
+giad_sen <- ggplot() +
+  geom_line(data = giad2, aes(x = session, y = bl_sen)) +
+  geom_point(data = giad2, aes(x = session, y = bl_sen), size = 2) +
+  geom_line(data = giad2, aes(x = session, y = tx_sen)) +
+  geom_point(data = giad2, aes(x = session, y = tx_sen), size = 2) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  theme_classic() +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.line.x = element_blank()) +
+  labs(x = "",
+       y = "") 
+
+leli_sen <- ggplot() +
+  geom_line(data = leli2, aes(x = session, y = bl_sen)) +
+  geom_point(data = leli2, aes(x = session, y = bl_sen), size = 2) +
+  geom_line(data = leli2, aes(x = session, y = tx_sen)) +
+  geom_point(data = leli2, aes(x = session, y = tx_sen), size = 2) +
+  scale_x_continuous(limits = c(0, 8),
+                     breaks = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  theme_classic() +
+  labs(x = "",
+       y = "") 
+
+all_plot_sen <- saje_sen / giad_sen / leli_sen
+```
+
+
+![](tools/mbl_sen_ppx.png){width=75%}
