@@ -35,6 +35,12 @@ leli <- import(here("data", "leli_mlm.csv"),
 giad <- import(here("data", "giad_mlm.csv"),
                setclass = "tbl_df") 
 
+data_ds <- import(here("data", "mlm_data_ds.csv"),
+               setclass = "tbl_df") 
+
+data_sen <- import(here("data", "mlm_data_sen.csv"),
+               setclass = "tbl_df") 
+
 ```
 
 ## Analysis All Participants 
@@ -259,3 +265,121 @@ summary(d.Model_giad)
 | Autocorrelation     | 0.991      |  |
 | Level | 141.950      | .0266 |
 | Slope | 28.2272     |  .3038    |
+
+
+
+## Analysis Digit Span
+
+### Null (unconditional) model
+
+```{r}
+d.Null_ds <- lme(DV~1,random=~1|Case,data=data_ds,
+control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Null_ds)
+intervals(d.Null_ds)
+summary(d.Null_ds)
+```
+
+
+### Model with random intercept and change in level (with an autocorrelation component)
+```{r}
+d.Level_ds <- lme(DV~1+Phase,random=~1|Case,data=data_ds,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Level_ds)
+intervals(d.Level_ds)
+summary(d.Level_ds)
+```
+
+
+### Model with random intercept and change in slope (with an autocorrelation component)
+```{r}
+d.Time_ds <- lme(DV~1+Time_CTR,random=~1|Case,data=data_ds,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Time_ds)
+intervals(d.Time_ds)
+summary(d.Time_ds)
+```
+
+
+### Model with random intercept and change in level/slope in Tx (with autocorrelation)
+```{r}
+d.Model_ds <- lme(DV~1+Phase+Time_PhaseCTR,random=~1|Case,data=data_ds,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Model_ds)
+intervals(d.Model_ds)
+summary(d.Model_ds)
+```
+
+### Results
+
+
+| **Value** | **Score** | **_p_-Value** |
+| :-------- | :-------: | :-----------: |
+| Autocorrelation     | .039      |  |
+| Level | 0.860      | .000 |
+| Slope | 0.335     |  .0273    |
+
+
+
+Interpretation: Neither the change in level or slope have large values, but they are both significant.
+
+
+
+## Analysis Sentences
+
+### Null (unconditional) model
+
+```{r}
+d.Null_sen <- lme(DV~1,random=~1|Case,data=data_sen,
+control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Null_sen)
+intervals(d.Null_sen)
+summary(d.Null_sen)
+```
+
+
+### Model with random intercept and change in level (with an autocorrelation component)
+```{r}
+d.Level_sen <- lme(DV~1+Phase,random=~1|Case,data=data_sen,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+coefficients(d.Level_sen)
+intervals(d.Level_sen)
+summary(d.Level_sen)
+```
+
+
+### Model with random intercept and change in slope (with an autocorrelation component)
+```{r}
+d.Time_sen <- lme(DV~1+Time_CTR,random=~1|Case,data=data_sen,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Time_sen)
+intervals(d.Time_sen)
+summary(d.Time_sen)
+```
+
+
+### Model with random intercept and change in level/slope in Tx (with autocorrelation)
+```{r}
+d.Model_sen <- lme(DV~1+Phase+Time_PhaseCTR,random=~1|Case,data=data_sen,
+correlation=corAR1(form=~1|Case),control=list(opt="optim"),na.action="na.omit")
+# Rename variables and use only complete cases
+coefficients(d.Model_sen)
+intervals(d.Model_sen)
+summary(d.Model_sen)
+```
+
+### Results
+
+
+| **Value** | **Score** | **_p_-Value** |
+| :-------- | :-------: | :-----------: |
+| Autocorrelation     | .167      |  |
+| Level | 2.186      | < .001 |
+| Slope | 0.831     |  < .001    |
+
+
+
+Interpretation: Change in level is stronger for sentences than for digit span. The change in slope is still relatively low. Both values are significiant. Overall, the effect for change in sentences appears to be greater than for change in digit span. 

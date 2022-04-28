@@ -18,6 +18,8 @@ navbar:
     href: accuracy.html
   - text: Duration
     href: duration.html
+  - text: MLM
+    href: mlm.html
   - icon: fa-github
     href: https://github.com/Jim-Wright90/aaron_pilot_data.git
 output:
