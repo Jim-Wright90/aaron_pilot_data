@@ -1,0 +1,29 @@
+---
+title: 'Tau-U: MBL'
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: tango
+---
+
+## Results for Digit Span 
+
+| **Value** | **Score** |
+| :-------- | :-------: |
+| Tau-U     | .8065      |
+| *z*-Score | 2.931      |
+| *p*-value | .0034     | 
+
+
+## Results for Sentences
+
+| **Value** | **Score** |
+| :-------- | :-------: |
+| Tau-U     | 1.00      |
+| *z*-Score | 3.634      |
+| *p*-value | .0003     | 
+
+
+For both calculations, all participants required a baseline trend correction. The Tau-U values for both calculations generated a significant *p*-value. More importantly, the obtained *Tau* values correspond to either medium to high effect (digit span) or large to strong effect (sentences) when applying the Tau-U benchmarks established by Parker (2011).

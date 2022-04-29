@@ -20,6 +20,8 @@ navbar:
     href: duration.html
   - text: MLM
     href: mlm.html
+  - text: Tau-U:MBL
+    href: tau_u_mbl.html
   - icon: fa-github
     href: https://github.com/Jim-Wright90/aaron_pilot_data.git
 output:
